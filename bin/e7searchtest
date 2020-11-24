@@ -5,17 +5,22 @@ require "e7searchtest"
 
 def usage
   puts <<~USAGE
-    <QUERY_FORMAT> | bin/e7searchtest
+    <QUERY_FORMAT> | bin/e7searchtest [<max search terms>]
+
+    ARGS
+      max search terms
+        Set the maximum number of search terms to consider per query. Defaults to 8.
 
     EXAMPLE
 
-    echo "P Ford Car Review Q Review" | bin/e7searchtest
+    echo "P Ford Car Review Q Review" | bin/e7searchtest 16
   USAGE
 
   exit
 end
 
-usage if STDIN.tty?
-search_input = Kernel.gets
+usage if $stdin.tty?
+search_input = $stdin.gets
+max_search_terms = ARGV.shift || 8
 
-puts E7SearchTest.rank(search_input)
+puts E7SearchTest.rank(search_input, max_search_terms)
