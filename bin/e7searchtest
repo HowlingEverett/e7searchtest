@@ -15,7 +15,7 @@ def usage
   exit
 end
 
-search_input = STDIN.gets
-usage unless search_input
+usage if STDIN.tty?
+search_input = Kernel.gets
 
 puts E7SearchTest.rank(search_input)
