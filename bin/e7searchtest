@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "e7searchtest"
+
+def usage
+  puts <<~USAGE
+    <QUERY_FORMAT> | bin/e7searchtest
+
+    EXAMPLE
+
+    echo "P Ford Car Review Q Review" | bin/e7searchtest
+  USAGE
+
+  exit
+end
+
+search_input = STDIN.gets
+usage unless search_input
+
+puts E7SearchTest.rank(search_input)
