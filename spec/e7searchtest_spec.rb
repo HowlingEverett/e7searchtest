@@ -18,7 +18,7 @@ RSpec.describe E7SearchTest, "#rank" do
       Q6:
     }
 
-    expect(E7SearchTest.rank(input_string)).to eq expected_output
+    expect(E7SearchTest.rank(input_string, 8)).to eq expected_output
   end
 
   it "ranks a maximum of 5 pages per query" do
@@ -33,7 +33,15 @@ RSpec.describe E7SearchTest, "#rank" do
       Q1: P5 P6 P1 P2 P4
     }
 
-    expect(E7SearchTest.rank(input_string)).to eq expected_output
+    expect(E7SearchTest.rank(input_string, 8)).to eq expected_output
+  end
+
+  it "does not process malformed input" do
+    input_string = %{Just some random text}
+
+    expected_output = compact_output %{}
+
+    expect(E7SearchTest.rank(input_string, 8)).to eq expected_output
   end
 
   private

@@ -5,7 +5,7 @@ require "e7searchtest/formatter"
 module E7SearchTest
   class Error < StandardError; end
 
-  def self.rank(input, max_n)
+  def self.rank(input, max_n = 8)
     E7PageRanker.new(input, max_n).to_s
   end
 
